@@ -1,6 +1,35 @@
 {
-      "scripts": {
+  "scripts": {
+    "dev": "next dev",
     "build": "next build",
-    "export": "next build && next export"
+    "start": "next start",
+    "lint": "next lint"
+  }
+}
+
+{
+  "name": "mediroute",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "^14.2.15",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.4.3",
+    "@types/react": "^18.2.7",
+    "@types/react-dom": "^18.2.5",
+    "eslint": "^8.35.0",
+    "eslint-config-next": "^14.2.15",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.4.3"
   }
 }
