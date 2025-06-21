@@ -25,10 +25,42 @@ export default function PatientDetails2Page() {
     setFormData((prev) => ({ ...prev, [field]: value }))
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (isFormComplete()) {
-      localStorage.setItem("patientData2", JSON.stringify(formData))
-      router.push("/loading")
+      const patientDataString = localStorage.getItem('patientData')
+      if (!patientDataString) {
+        console.error('Patient data from the first form is missing.')
+        // Optionally: show an error to the user
+        return
+      }
+      const patientData1 = JSON.parse(patientDataString)
+      const combinedData = { ...patientData1, ...formData }
+
+      try {
+        const response = await fetch('http://localhost:3000/patients', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(combinedData),
+        })
+
+        if (!response.ok) {
+          throw new Error(`Server responded with ${response.status}`)
+        }
+
+        const newPatientRecord = await response.json()
+        console.log('Submission successful:', newPatientRecord)
+        
+        // Persist data for other pages
+        localStorage.setItem('patientData2', JSON.stringify(formData))
+        localStorage.setItem('newlyCreatedPatient', JSON.stringify(newPatientRecord[0]))
+        
+        router.push('/loading')
+      } catch (error) {
+        console.error('Failed to submit patient data:', error)
+        // Optionally: show an error to the user
+      }
     }
   }
 
