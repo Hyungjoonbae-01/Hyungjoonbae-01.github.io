@@ -4,6 +4,7 @@ import { patientPlugin } from './api/patients'
 //import { authRedirectMiddleware } from './middleware'
 //import { authPlugin } from './api/auth'
 import { cookie } from '@elysiajs/cookie'
+//import { geminiPlugin } from './api/gemini'
 
 /*
   Supabase Setup
@@ -38,6 +39,7 @@ const app = new Elysia()
   }))
   .use(cookie())
   .use(patientPlugin)
+  //.use(geminiPlugin)
   .listen(3000)
 
 console.log(`🚀 Server running on http://localhost:3000`)

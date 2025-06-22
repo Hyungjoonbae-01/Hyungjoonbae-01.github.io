@@ -56,7 +56,7 @@ export default function PatientDetails2Page() {
         localStorage.setItem('patientData2', JSON.stringify(formData))
         localStorage.setItem('newlyCreatedPatient', JSON.stringify(newPatientRecord[0]))
         
-        router.push('/loading')
+        router.push('/surgery-recommendation')
       } catch (error) {
         console.error('Failed to submit patient data:', error)
         // Optionally: show an error to the user
